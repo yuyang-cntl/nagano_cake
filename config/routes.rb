@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'about', to: 'admin/homes#about'
+
   namespace :admin do
     get 'customers/edit'
     get 'customers/index'
@@ -19,6 +21,9 @@ Rails.application.routes.draw do
   end
   namespace :public do
     get 'genres/index'
+  end
+  namespace :public do
+    resources :items, only: [:index, :show]
   end
   namespace :public do
     get 'customers/new'
