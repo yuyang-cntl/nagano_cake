@@ -1,11 +1,17 @@
+<% if flash[:alert] %>
+  <div class="alert alert-danger"><%= flash[:alert] %></div>
+<% end %>
+<% if flash[:notice] %>
+  <div class="alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+
+<p class="col-md-3 d-flex justify-content-end">
+ <span style="background-color: #f0f0f0;"><strong>管理者</strong>ログイン</p></span>
+
 <div class="container">
- <div class="row">
-  <p class="col-md-3 d-flex justify-content-end">
-  <span style="background-color: #f0f0f0;"><strong>管理者</strong>ログイン</span>
-  </p>
- 
+ <div class="row"> 
  <div class="col-md-9 d-flex flex-column justify-content-center">
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= form_with url:admin_session_path, scope: :admin, local: true do |f| %>
    <div class="field mt-5 mb-3">
     <%= f.label :email, "メールアドレス", class: "me-4" %>
     <%= f.email_field :email, autofocus: true, placeholder: "sample@example.com", autocomplete: "email", style: "width: 450px;" %>
@@ -20,7 +26,7 @@
     <%= f.submit "ログイン", class: "btn btn-primary", style: "width: 150px; margin-left: 210px;" %>
    </div>
   <% end %>
- 
+
  </div>
 </div>
 <%= render "admin/shared/links" %>

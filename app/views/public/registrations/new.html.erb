@@ -1,29 +1,65 @@
-<h2>Sign up</h2>
+<p class="col-md-2 d-flex justify-content-end">
+ <span style="background-color: #f0f0f0;"><strong>新規会員登録</strong></span></p>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container">
+ <div class="row">
+  <div class="col-md-2 offset-1 d-flex flex-column justify-content-start mt-5">
+   <p>名前</p>
+   <p>フリガナ</p>
+   <p>メールアドレス</p>
+   <p>郵便番号（ハイフンなし）</p>
+   <p>住所</p>
+   <p>電話番号（ハイフンなし）</p>
+   <p>パスワード（６文字以上）</p>
+   <p>パスワード（確認用）</p>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+  <div class="col-md-9 vh-100 d-flex flex-column justify-content-start mt-5">
+   <%= form_with url:customer_registration_path, scope: :customer, local: true do |f| %>
+    <div class="field d-flex pb-2 align-items-center">
+     <%= f.label :last_name,"(姓)", class:"col-md-1" %>
+     <%= f.text_field :namespace, placeholder: "田中", autofocus: true, class:"col-md-3" %>
+     <%= f.label :name,"(名)", class:"col-md-1 offset-1" %>
+     <%= f.text_field :namespace, placeholder: "太郎", autofocus: true, class:"col-md-3"%>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="field d-flex pb-2 align-items-center">
+     <%= f.label :"(セイ)", class:"col-md-1" %>
+     <%= f.text_field :namespace, placeholder: "タナカ", autofocus: true, class:"col-md-3" %>
+     <%= f.label :"(メイ)", class:"col-md-1 offset-1" %>
+     <%= f.text_field :namespace, placeholder: "タロウ", autofocus: true, class:"col-md-3" %>
+    </div>
+    
+    <div class="field d-flex pb-2 align-items-center">
+     <%= f.email_field :email, placeholder: "sample@example.com", autofocus: true, class:"col-md-3 offset-1" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+    <div class="field d-flex pb-2 align-items-center">
+     <%= f.text_field :postal, placeholder: "0000000", autofocus: true, class:"col-md-3 offset-1" %>
+    </div>
 
+    <div class="field d-flex pb-2 align-items-center">
+     <%= f.text_field :address, placeholder: "東京都渋谷区",autofocus: true, class:"col-md-3 offset-1" %>
+    </div>
+
+    <div class="field d-flex pb-2 align-items-center">
+     <%= f.text_field :telephone_number, placeholder: "0000000000",autofocus: true, class:"col-md-3 offset-1" %>
+    </div>
+
+    <div class="field d-flex pb-2 align-items-center">
+     <%= f.password_field :password, autocomplete: "new-password", autofocus: true, class:"col-md-3 offset-1" %>
+    </div>
+
+    <div class="field d-flex pb-2 align-items-center">
+     <%= f.password_field :password_confirmation, autocomplete: "new-password", autofocus: true, class:"col-md-3 offset-1" %>
+    </div>
+
+    <div class="actions d-flex pt-3 align-items-center">
+     <%= f.submit "新規登録", class:"btn btn-success col-md-3 offset-1", style:"text-white width: 150px;" %>
+    </div>
+   <% end %>
+  </div>
+ </div>
+</div>
 <%= render "public/shared/links" %>

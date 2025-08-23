@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   get 'about', to: 'admin/homes#about'
 
   namespace :admin do
+    root to: 'homes#top'
+  end
+
+  namespace :admin do
     get 'customers/edit'
     get 'customers/index'
     get 'customers/show'

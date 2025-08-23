@@ -7,6 +7,11 @@ class Public::SessionsController < Devise::SessionsController
     customers_path(resource)
   end
 
+  def after_sign_out_path_for(resources_or_scope)
+    flash[:notice] = "Signed out successfully."
+    new_customer_session_path
+  end
+
   # GET /resource/sign_in
   # def new
   #   super
